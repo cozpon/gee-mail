@@ -1,0 +1,81 @@
+body {
+background-color: #d6f5f5; 
+margin: 0;
+padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.row {
+  margin: 10px;
+  background-color: rgba(179,179,208,.9);
+}
+
+h1 {
+	color: rgba(255,255,0);
+	font-family: sans-serif;
+	font-size: 70px;
+	font-weight: 300;
+	line-height: 60px;
+	margin: 0;
+}
+
+h3 {
+	color: rgba(255,255,0);
+	font-size:80px;
+
+}
+
+#header-text {
+  color: rgba(255,255,0);
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  top: 25%;
+  width: 60%;
+}
+
+.emails {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+.current .item {
+  background: rgba(179,179,208,.9);
+}
+
+.item {
+  cursor: pointer;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  
+}
+
+.item .sender {
+  margin-left: 20px;
+}
+
+.item .subject {
+  font-weight: bold;
+  margin-left: 50px;
+  text-align: left;
+}
+
+.item .date {
+  margin-right: 20px;
+  text-align: right;  
+}
+
+.body{
+  display: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.body h1 {
+  margin-top: 0px;
+  font-size: 25px;
+}
