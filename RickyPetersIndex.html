@@ -15,6 +15,13 @@
      		emailsContainer.className = "emails container";
      
 
+     			//Message Counter
+			var inbox = document.createElement("div");
+	            inbox.className = "navigation";
+	        	inbox.id = "emailTotal";
+	        	inbox.innerHTML = "Messages (" + geemails.length + ")";
+	        	emailsContainer.appendChild(inbox);
+
 
 			for (var i = 0; i < window.geemails.length; i++){
 				var sender = window.geemails[i].sender;
@@ -91,20 +98,67 @@
 				emailContainer.appendChild(itemRow);
 				emailContainer.appendChild(bodyRow);
 				
-
 				emailsContainer.appendChild(emailContainer);
 
 	} //end loop
-	
-  
 
-			$('.email').click(function() {
-				console.log("hey world");
-   				$('.body').hide();
-    			$(this).children('.body').show();
-});
+	// updates message counter
+    function counter() {
+        var inboxCounter = document.getElementById("emailTotal");
+            inboxCounter.innerHTML = "Messages (" + (geemails.length += 1) + ")";
+        }
 
 
+	// generates new email (?????)
+	function getNewMessage(){
+	 var itemRow = document.createElement("div");
+				itemRow.className = "item row";
+	 var newEmail = getNewMessage();
+     var emailsContainer = document.createElement("div");
+	     emailsContainer.className = "emailContainer";
+	     emailsContainer.appendChild(emailContainer);
+	 var newDate = document.createElement("div");
+	 	 newDate.className = "newMailDate";
+	 	 newDate.innerHTML = emailContainer.date;
+	 	 emailsContainer.appendChild(newDate);
+	 var newSender = document.createElement("div");
+	 	 newSender.className = "newMailSender";
+	 	 newSender.innerHTML = emailContainer.Sender;
+	 	 emailsContainer.appendChild(newSender);
+	 var newSubject = document.createElement("div");
+	 	 newSubject.className = "newMailSubject";
+	 	 newSubject.innerHTML = emailContainer.Subject;
+	 	 emailsContainer.appendChild(newSubject);
+	 var newBody = document.createElement("div");
+	 	 newBody.className = "newMailBody";
+	 	 newBody.innerHTML = emailContainer.Body;
+	 	 emailsContainer.appendChild(newBody);
+
+	 	 //?????
+     //emailsContainer.appendChild();
+     
+   
+  }
+	//?????
+	setInterval(getNewMessage, 3000);
+ 		
+
+
+		// open and close (toggle) with keypress
+		$('.email').click(function() {
+   			 $('.email').removeClass('current');
+   			 $(this).addClass('current');
+    		 $(this).children('.body').toggle();
+    			
+  });
+	//* opens email with keypress O
+		$(document).keypress(function(event) {
+    		 if(event.which === 111) {
+       		 $('.current').children('.body').toggle();
+    }
+  });
+
+	$(document).ready(emailsContainer);
 				
       };
     	</script>
@@ -114,7 +168,7 @@
 
 
 		<div class="container">
-<p align="right">An email thing by Ricky Peters.</p>
+	<p align="right">An email thing by Ricky Peters.</p>
           <h1 id="header-text">Ugly Inbox</h1>
             
 		<h3>
@@ -127,3 +181,4 @@
 	</body>
 
 </html>
+
