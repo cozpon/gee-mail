@@ -1,8 +1,16 @@
 body {
-background-color: #d6f5f5; 
-margin: 0;
-padding: 0;
+height: 200px;
+    background: grey; /* For browsers that do not support gradients */    
+    background: -webkit-linear-gradient(left top, grey, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, grey, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, grey, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, white, rgba(119,98,208, .6)); /* Standard syntax (must be last) */
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
 }
+
+
 
 p {
   margin: 0;
@@ -10,7 +18,8 @@ p {
 
 .row {
   margin: 10px;
-  background-color: rgba(179,179,208,.9);
+  background-color: rgba(179,179,179,.8);
+  box-shadow:50px 50px 50px rgba(179,179,208) inset;
 }
 
 h1 {
@@ -39,12 +48,12 @@ h3 {
 
 .emails {
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 300px;
 }
 
 
 .current .item {
-  background: rgba(179,179,208,.9);
+  background: rgba(119,98,208,.8);
 }
 
 .item {
@@ -69,7 +78,7 @@ h3 {
   text-align: right;  
 }
 
-.body {
+.body{
   display: none;
   padding-top: 10px;
   padding-bottom: 10px;
