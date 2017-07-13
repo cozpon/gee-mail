@@ -1,18 +1,162 @@
 <html>
 	<head>
-		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
-    <script>
-      window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-      };
-    </script>
+	
+	<link href="css/style.css" rel="stylesheet" media="screen">
+	<link href="http://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/mail-generator.js"></script>
+
+    	<script>
+
+     		window.onload = function(){
+      
+     		var emailsContainer = document.getElementById("emailsContainer");
+     		emailsContainer.className = "emails container";
+     
+
+     			//Message Counter
+			var inbox = document.getElementById("emailTotal");
+	            inbox.className = "navigation";
+	        	inbox.innerHTML = "Messages (" + geemails.length + ")";
+
+
+			for (var i = 0; i < window.geemails.length; i++){
+				var sender = window.geemails[i].sender;
+				var subject = window.geemails[i].subject;
+				var date = window.geemails[i].date;
+				var body = window.geemails[i].body;
+
+
+				var resultRow = buildRow(sender, subject, date, body);
+				
+				emailsContainer.appendChild(resultRow);
+
+				} //end loop
+		// open and close (toggle) with keypress
+			$(document).on("click", ".email", function() {
+   				$('.email').removeClass('current');
+   			 	$(this).addClass('current');
+    		 	$(this).children('.body').toggle();
+		});
+			
+	}
+
+			function buildRow(sender, subject, date, body){
+				// Create Row
+				var itemRow = document.createElement("div");
+				itemRow.className = "item row";
+
+				// Create Sender (who it from)
+				var col3Div = document.createElement("div");
+				col3Div.className = "col-xs-3";
+
+
+				var senderDiv = document.createElement("p");
+				senderDiv.className = "sender";
+				senderDiv.innerHTML = sender;
+
+				col3Div.appendChild(senderDiv);
+
+				// Add Sender to Row
+				itemRow.appendChild(col3Div);
+				
+
+				// Create Subject
+				var col6Div = document.createElement("div");
+				col6Div.className = "col-xs-6"; 
+
+				var subjectDiv = document.createElement("p");
+				subjectDiv.className = "subject";
+				subjectDiv.innerHTML = subject;
+				col6Div.appendChild(subjectDiv);
+
+				// Add Subject to Row
+				itemRow.appendChild(col6Div);
+
+
+				// Create Date
+				var col9Div = document.createElement("div");
+				col9Div.className = "col-xs-3"; 
+
+				var dateDiv = document.createElement("p");
+				dateDiv.className = "date";
+				dateDiv.innerHTML = date;
+				col9Div.appendChild(dateDiv);
+
+				itemRow.appendChild(col9Div);
+
+
+				// Create Body Row
+
+				var bodyRow = document.createElement("div");
+				bodyRow.className = "body row";
+
+				// CREATE Left Spacer 
+				var leftSpacer = document.createElement("div");
+				leftSpacer.className = "col-xs-3"
+				var rightSpacer = document.createElement("div");
+				rightSpacer.className = "col-xs-3";
+
+				//create content
+				var bodyContent = document.createElement("div");
+				bodyContent.className = "col-xs-6";
+				bodyContent.innerHTML = body;
+
+				// BUILD ROW	
+				bodyRow.appendChild(leftSpacer);
+				bodyRow.appendChild(bodyContent);
+				bodyRow.appendChild(rightSpacer);
+
+				var emailContainer = document.createElement("div");
+				emailContainer.className = "email";
+				emailContainer.appendChild(itemRow);
+				emailContainer.appendChild(bodyRow);
+
+				return emailContainer; 
+	}
+
+	function getRandomMessage() {
+		// message data
+		  var randomData = window.getNewMessage();
+		  var randomRow = buildRow(randomData.sender, randomData.subject, randomData.date, randomData.body);
+		  var emailsContainer = document.getElementById("emailsContainer");
+		  
+  		counter();
+		  // Insert at top of list
+		  emailsContainer.insertBefore(randomRow, emailsContainer.firstChild);
+
+		
+
+	}
+
+	// ger a random message 5 seconds
+	setInterval(getRandomMessage, 5000);
+
+	// updates message counter
+  	function counter() {
+        var inboxCounter = document.getElementById("emailTotal");
+            inboxCounter.innerHTML = "Messages (" + (geemails.length += 1) + ")";
+        }
+		
+     
+    	</script>
 	</head>
+		
 	<body>
-		<div class="container" id="main">
-			Build Me!
+
+
+		<div class="container">
+		  <p align="right">An email thing by Ricky Peters.</p>
+          
+            
+		<h3>
+			<b>Emails!</b>
+		</h3>
+		<div id="emailTotal"> </div>
+			<div id="emailsContainer"> </div>
+
 		</div>
+
 	</body>
+
 </html>
